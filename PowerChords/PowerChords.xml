@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PowerChords</name>
+    </assembly>
+    <members>
+        <member name="T:PowerChords.Controllers.AcordeController">
+            <summary>
+            Informações de acordes
+            </summary>
+        </member>
+        <member name="M:PowerChords.Controllers.AcordeController.Get(System.String)">
+            <summary>
+            Retorna informações sobre o acorde
+            </summary>
+            <param name="nome">Nome do acorde</param>
+            <returns></returns>
+        </member>
+        <member name="T:PowerChords.Controllers.CampoHarmonicoController">
+            <summary>
+            Informações relacionadas ao campo harmônico
+            </summary>
+        </member>
+        <member name="M:PowerChords.Controllers.CampoHarmonicoController.Get(System.String)">
+            <summary>
+            Retorna informações sobre um campo harmônico
+            </summary>
+            <param name="nome">Nome do campo</param>
+            <returns>Campo Harmônico</returns>
+        </member>
+        <member name="T:PowerChords.OutAcorde">
+            <summary>
+            Acorde 
+            </summary>
+        </member>
+        <member name="P:PowerChords.OutAcorde.Nome">
+            <summary>
+            Nome do acorde
+            </summary>
+        </member>
+        <member name="P:PowerChords.OutAcorde.Notas">
+            <summary>
+            Lista de notas do acorde
+            </summary>
+        </member>
+        <member name="P:PowerChords.OutAcorde.Intervalos">
+            <summary>
+            Lista de intervalos do acorde
+            </summary>
+        </member>
+        <member name="P:PowerChords.OutAcorde.Relativa">
+            <summary>
+            Acorde relativo maior ou menor
+            </summary>
+        </member>
+        <member name="P:PowerChords.OutAcorde.Baixo">
+            <summary>
+            Baixo do acorde
+            </summary>
+        </member>
+        <member name="M:PowerChords.OutAcorde.op_Implicit(Acordes.DML.Acorde)~PowerChords.OutAcorde">
+            <summary>
+            Converte DML.Acorde para OutAcorde
+            </summary>
+            <param name="acorde"></param>
+        </member>
+        <member name="T:PowerChords.OutAcordeReferencia">
+            <summary>
+            Referência para um acorde
+            </summary>
+        </member>
+        <member name="P:PowerChords.OutAcordeReferencia.Acorde">
+            <summary>
+            Nome do acorde
+            </summary>
+        </member>
+        <member name="P:PowerChords.OutAcordeReferencia.UrlAcorde">
+            <summary>
+            URL do acorde
+            </summary>
+        </member>
+        <member name="T:PowerChords.OutCampoHarmonico">
+            <summary>
+            Informações do campo harmônico
+            </summary>
+        </member>
+        <member name="P:PowerChords.OutCampoHarmonico.Graus">
+            <summary>
+            Graus do campo harmônico
+            </summary>
+        </member>
+        <member name="M:PowerChords.OutCampoHarmonico.op_Implicit(Acordes.CampoHarmonico)~PowerChords.OutCampoHarmonico">
+            <summary>
+            Converte um campo harmônico interno para OutCampoHarmonico
+            </summary>
+            <param name="campo"></param>
+        </member>
+        <member name="T:PowerChords.OutStatusBase">
+            <summary>
+            Objeto base do Status
+            </summary>
+        </member>
+        <member name="P:PowerChords.OutStatusBase.Status">
+            <summary>
+            Objeto de status
+            </summary>
+        </member>
+        <member name="T:PowerChords.OutStatus">
+            <summary>
+            Status do retorno da API
+            </summary>
+        </member>
+        <member name="P:PowerChords.OutStatus.Sucesso">
+            <summary>
+            Sucesso na API
+            </summary>
+        </member>
+        <member name="P:PowerChords.OutStatus.MensagemErro">
+            <summary>
+            Mensagem de erro da API
+            </summary>
+        </member>
+        <member name="T:PowerChords.Program">
+            <summary>
+            Programa base da API
+            </summary>
+        </member>
+        <member name="M:PowerChords.Program.Main(System.String[])">
+            <summary>
+            Chamada base da API
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:PowerChords.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            Cria Host
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:PowerChords.Startup">
+            <summary>
+            Classe de configurações da API do dotnet core
+            </summary>
+        </member>
+        <member name="M:PowerChords.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Construtor
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:PowerChords.Startup.Configuration">
+            <summary>
+            configuração
+            </summary>
+        </member>
+        <member name="M:PowerChords.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Configura serviços da API
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:PowerChords.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            Configura http para chamadas da API.
+            </summary>
+            <param name="app">App Builder</param>
+            <param name="env">Ambiente</param>
+        </member>
+    </members>
+</doc>
