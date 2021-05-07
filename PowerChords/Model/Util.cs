@@ -12,7 +12,7 @@ namespace PowerChords
             HttpContext current = new HttpContextAccessor().HttpContext;
             string BaseURL = $"{current.Request.Scheme}://{current.Request.Host}{current.Request.PathBase}";
             nome = Uri.EscapeUriString(nome);
-            return $"{BaseURL}/PowerChords/acorde/{nome}";
+            return $"{BaseURL}/Acorde/{nome}";
         }
     }
 }
