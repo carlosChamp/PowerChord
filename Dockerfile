@@ -29,4 +29,4 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 #ENTRYPOINT ["dotnet", "PowerChords.dll"]
 
-CMD ASPNETCORE_URLS=http://*:$PORT dotnet CarterAPI.dll
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet PowerChords.dll
