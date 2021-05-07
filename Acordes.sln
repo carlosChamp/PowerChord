@@ -12,9 +12,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{28D38AAD-6005-4C37-8BE5-D77780BDB039}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		PowerChords\Dockerfile = PowerChords\Dockerfile
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerChords.TesteIntegracao", "PowerChords.TesteIntegracao\PowerChords.TesteIntegracao.csproj", "{E64D9E0E-C5D6-439D-B025-622E5AA7DC77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PowerChords.TesteIntegracao", "PowerChords.TesteIntegracao\PowerChords.TesteIntegracao.csproj", "{E64D9E0E-C5D6-439D-B025-622E5AA7DC77}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
