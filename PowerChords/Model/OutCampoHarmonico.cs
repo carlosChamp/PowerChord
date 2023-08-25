@@ -12,7 +12,7 @@ namespace PowerChords
         /// <summary>
         /// Graus do campo harmônico
         /// </summary>
-        public List<OutAcordeReferencia> Graus { get; set; } = new List<OutAcordeReferencia>();
+        public IList<OutAcordeReferencia> Graus { get; set; } = new List<OutAcordeReferencia>();
 
         /// <summary>
         /// Converte um campo harmônico interno para OutCampoHarmonico
@@ -27,10 +27,11 @@ namespace PowerChords
 
             foreach (Acorde acorde in campo.Graus)
             {
-                OutAcordeReferencia outAcordeReferencia = new OutAcordeReferencia();
+                OutAcordeReferencia outAcordeReferencia = new OutAcordeReferencia
+                {
+                    Acorde = acorde.Nome
+                };
 
-                outAcordeReferencia.Acorde = acorde.Nome;
-               
                 outCampoHarmonico.Graus.Add(outAcordeReferencia);
             }
 

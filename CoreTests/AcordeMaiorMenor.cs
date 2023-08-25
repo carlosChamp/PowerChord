@@ -19,9 +19,7 @@ namespace CoreTests
             Acorde acorde = new Acorde(nome);
 
             InterpreterAcorde cAcorde = new InterpreterAcorde();
-
             cAcorde.Interpret(acorde);
-
             Assert.Equal(
                 new List<TipoIntervalo> { TipoIntervalo.TONICA, TipoIntervalo.TERCA_MAIOR, TipoIntervalo.QUINTA_JUSTA },
                 acorde.GetIntervalos());
@@ -38,9 +36,7 @@ namespace CoreTests
             Acorde acorde = new Acorde(nome);
 
             InterpreterAcorde cAcorde = new InterpreterAcorde();
-
             cAcorde.Interpret(acorde);
-
             Assert.Equal(
                 new List<TipoIntervalo> { TipoIntervalo.TONICA, TipoIntervalo.TERCA_MENOR, TipoIntervalo.QUINTA_JUSTA },
                 acorde.GetIntervalos());

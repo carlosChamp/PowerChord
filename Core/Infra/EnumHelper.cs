@@ -1,12 +1,14 @@
 ﻿using Acordes.DML;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace Acordes.Infra
 {
-    public static class CifraAtrributeHelper
+    public static class EnumHelper
     {
         public static string GetCifraFromEnum(this TipoNota nota)
         {
@@ -17,6 +19,16 @@ namespace Acordes.Infra
                                             OfType<CifraAttribute>().FirstOrDefault();
 
             return cifraEnum?.NomeCifra;
+        }
+        public static string ToDefaultValue<T>(this T source)
+        {
+            FieldInfo fi = source.GetType().GetField(source.ToString());
+
+            DefaultValueAttribute[] attributes = (DefaultValueAttribute[])fi.GetCustomAttributes(
+                typeof(DefaultValueAttribute), false);
+
+            if (attributes != null && attributes.Length > 0) return attributes[0].Value?.ToString();
+            else return source.ToString();
         }
 
         public static TipoNota? GetEnumFromCifra(this string cifra)
@@ -45,7 +57,7 @@ namespace Acordes.Infra
                                             GetField(Enum.GetName(tipoEnum, intervalo)).
                                             GetCustomAttributes(false).
                                             OfType<ValorIntervaloAttribute>().FirstOrDefault();
-
+                
                 if (intervaloEnum != null && intervaloEnum.Valor.Contains(valorIntervalo))
                     return (TipoIntervalo)intervalo;
             }

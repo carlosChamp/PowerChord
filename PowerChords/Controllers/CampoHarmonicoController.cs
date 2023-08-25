@@ -1,4 +1,5 @@
 ﻿using Acordes.Factory;
+using Acordes.Infra;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -34,7 +35,7 @@ namespace PowerChords.Controllers
                 outCampoHarmonico.Status.Sucesso = true;
 
             }
-            catch (Acordes.Interpreter.ExpressaoInvalidaException ex)
+            catch (AcordeCoreException ex)
             {
                 this.HttpContext.Response.StatusCode = 400;
                 outCampoHarmonico.Status.Sucesso = false;

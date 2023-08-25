@@ -7,7 +7,7 @@ namespace Acordes.Infra
     public static class ListaHelper
     {
 
-        public static bool ContainsAll<T>(this List<T> lista, params T[] values)
+        public static bool ContainsAll<T>(this IList<T> lista, params T[] values)
         {
             bool containsValues = true;
             foreach (var item in values)

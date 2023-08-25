@@ -8,7 +8,7 @@ namespace Acordes.DML
     public class Acorde
     {
         #region atributos
-        private readonly List<TipoIntervalo> intervalos = new List<TipoIntervalo> { TipoIntervalo.TONICA };
+        private readonly IList<TipoIntervalo> intervalos = new List<TipoIntervalo> { TipoIntervalo.TONICA };
         #endregion
 
         #region Propriedades
@@ -17,32 +17,17 @@ namespace Acordes.DML
 
         public TipoNota Tonica { get; set; }
 
-        public List<TipoNota> GetNotas()
+        public IList<TipoNota> GetNotas()
         {
-            List<TipoNota> Notas = new List<TipoNota>();
+            IList<TipoNota> Notas = new List<TipoNota>();
 
             foreach (TipoIntervalo intervalo in intervalos)
             {
-                TipoNota nota = Tonica.Add((int)intervalo);
+                TipoNota nota = Tonica.Add(intervalo);
                 Notas.Add(nota);
             }
 
             return Notas;
-        }
-
-        internal void DiminuirIntervalo(TipoIntervalo? intervalo)
-        {
-            int indexIntervalo = intervalos.IndexOf(intervalo.GetValueOrDefault());
-            if (indexIntervalo >= 0)
-                intervalos[indexIntervalo]--;
-
-        }
-
-        internal void AumentarIntervalo(TipoIntervalo? intervalo)
-        {
-            int indexIntervalo = intervalos.IndexOf(intervalo.GetValueOrDefault());
-            if (indexIntervalo >= 0)
-                intervalos[indexIntervalo]++;
         }
 
         public ModoDoAcorde TriadeFormadora { get; set; }
@@ -84,7 +69,7 @@ namespace Acordes.DML
             Nome = nomeAcorde;
         }
 
-        private Acorde(TipoNota tonica, List<TipoIntervalo> intervalos, TipoNota? baixo = null)
+        private Acorde(TipoNota tonica, IList<TipoIntervalo> intervalos, TipoNota? baixo = null)
         {
             AddIntervalos(intervalos);
 
@@ -109,12 +94,27 @@ namespace Acordes.DML
                     this.intervalos.Add(intervalo);
         }
 
-        public List<TipoIntervalo> GetIntervalos()
+        public IList<TipoIntervalo> GetIntervalos()
         {
             return intervalos;
         }
 
-        public static Acorde CriarAcordePelosIntervalos(TipoNota Tonica, List<TipoIntervalo> intervalos, TipoNota? Baixo = null)
+        internal void DiminuirIntervalo(TipoIntervalo? intervalo)
+        {
+            int indexIntervalo = intervalos.IndexOf(intervalo.GetValueOrDefault());
+            if (indexIntervalo >= 0)
+                intervalos[indexIntervalo]--;
+
+        }
+
+        internal void AumentarIntervalo(TipoIntervalo? intervalo)
+        {
+            int indexIntervalo = intervalos.IndexOf(intervalo.GetValueOrDefault());
+            if (indexIntervalo >= 0)
+                intervalos[indexIntervalo]++;
+        }
+
+        public static Acorde CriarAcordePelosIntervalos(TipoNota Tonica, IList<TipoIntervalo> intervalos, TipoNota? Baixo = null)
         {
             Acorde acorde = new Acorde(Tonica, intervalos, Baixo);
             return acorde;
@@ -152,7 +152,6 @@ namespace Acordes.DML
             //Caso especial de acorde diminuto
             if (acorde.IsAcordeDiminuto)
             {
-
                 nome.Append("º");
                 return nome.ToString();
             }

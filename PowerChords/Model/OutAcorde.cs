@@ -19,12 +19,12 @@ namespace PowerChords
         /// <summary>
         /// Lista de notas do acorde
         /// </summary>
-        public List<TipoNota> Notas { get; set; }
+        public IList<TipoNota> Notas { get; set; }
 
         /// <summary>
         /// Lista de intervalos do acorde
         /// </summary>
-        public List<TipoIntervalo> Intervalos { get; set; }
+        public IList<TipoIntervalo> Intervalos { get; set; }
                 
         /// <summary>
         /// Acorde relativo maior ou menor

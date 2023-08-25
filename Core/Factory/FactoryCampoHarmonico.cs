@@ -7,57 +7,51 @@ using System.Text;
 
 namespace Acordes.Factory
 {
-
     public class FactoryCampoHarmonico
     {
-        private static Tuple<int, TipoAcordeFormula>[] FormulaCampoHarmonicoMaior
+        private static (TipoDistanciaEntreInvervalos, TipoAcordeFormula)[] FormulaCampoHarmonicoMaior
         {
             get
             {
-                Tuple<int, TipoAcordeFormula>[] formula = new Tuple<int, TipoAcordeFormula>[]
+                (TipoDistanciaEntreInvervalos, TipoAcordeFormula)[] formula = new (TipoDistanciaEntreInvervalos, TipoAcordeFormula)[]
                 {
-                    //new Tuple<int, TipoAcordeFormula>(2, TipoAcordeFormula.Maior),
-                    new Tuple<int, TipoAcordeFormula>(2, TipoAcordeFormula.Menor),
-                    new Tuple<int, TipoAcordeFormula>(2, TipoAcordeFormula.Menor),
-                    new Tuple<int, TipoAcordeFormula>(1, TipoAcordeFormula.Maior),
-                    new Tuple<int, TipoAcordeFormula>(2, TipoAcordeFormula.Maior),
-                    new Tuple<int, TipoAcordeFormula>(2, TipoAcordeFormula.Menor),
-                    new Tuple<int, TipoAcordeFormula>(2, TipoAcordeFormula.Diminuto),
-
+                    (TipoDistanciaEntreInvervalos.Tom, TipoAcordeFormula.Menor),
+                    (TipoDistanciaEntreInvervalos.Tom, TipoAcordeFormula.Menor),
+                    (TipoDistanciaEntreInvervalos.MeioTom, TipoAcordeFormula.Maior),
+                    (TipoDistanciaEntreInvervalos.Tom, TipoAcordeFormula.Maior),
+                    (TipoDistanciaEntreInvervalos.Tom, TipoAcordeFormula.Menor),
+                    (TipoDistanciaEntreInvervalos.Tom, TipoAcordeFormula.Diminuto),
                 };
                 return formula;
             }
         }
 
-        private static Tuple<int, TipoAcordeFormula>[] FormulaCampoHarmonicoMenor
+        private static (TipoDistanciaEntreInvervalos, TipoAcordeFormula)[] FormulaCampoHarmonicoMenor
         {
             get
             {
-                Tuple<int, TipoAcordeFormula>[] formula = new Tuple<int, TipoAcordeFormula>[]
+                (TipoDistanciaEntreInvervalos, TipoAcordeFormula)[] formula = new (TipoDistanciaEntreInvervalos, TipoAcordeFormula)[]
                 {
-                    //new Tuple<int, TipoAcordeFormula>(2, TipoAcordeFormula.Menor),
-                    new Tuple<int, TipoAcordeFormula>(2, TipoAcordeFormula.Diminuto),
-                    new Tuple<int, TipoAcordeFormula>(1, TipoAcordeFormula.Maior),
-                    new Tuple<int, TipoAcordeFormula>(2, TipoAcordeFormula.Menor),
-                    new Tuple<int, TipoAcordeFormula>(2, TipoAcordeFormula.Menor),
-                    new Tuple<int, TipoAcordeFormula>(1, TipoAcordeFormula.Maior),
-                    new Tuple<int, TipoAcordeFormula>(2, TipoAcordeFormula.Maior),
-
+                    (TipoDistanciaEntreInvervalos.Tom, TipoAcordeFormula.Diminuto),
+                    (TipoDistanciaEntreInvervalos.MeioTom, TipoAcordeFormula.Maior),
+                    (TipoDistanciaEntreInvervalos.Tom, TipoAcordeFormula.Menor),
+                    (TipoDistanciaEntreInvervalos.Tom, TipoAcordeFormula.Menor),
+                    (TipoDistanciaEntreInvervalos.MeioTom, TipoAcordeFormula.Maior),
+                    (TipoDistanciaEntreInvervalos.Tom, TipoAcordeFormula.Maior),
                 };
                 return formula;
             }
         }
 
-        public Tuple<int, TipoAcordeFormula>[] ObterFormulaPorAcordeBase(Acorde acorde)
+        public (TipoDistanciaEntreInvervalos, TipoAcordeFormula)[] ObterFormulaPorAcordeBase(Acorde acorde)
         {
             if (acorde.TriadeFormadora == ModoDoAcorde.PerfeitoMaior)
-            {
                 return FormulaCampoHarmonicoMaior;
-            }
-            else
-            {
+
+            if (acorde.TriadeFormadora == ModoDoAcorde.PerfeitoMenor)
                 return FormulaCampoHarmonicoMenor;
-            }
+
+            throw new CampoHarmonicoException("Campo harmônico não suportado.");
         }
 
         public CampoHarmonico CriarCampoHarmonico(string nomeAcorde)
@@ -66,18 +60,17 @@ namespace Acordes.Factory
             Acorde acorde = new Acorde(nomeAcorde);
             interpreter.Interpret(acorde);
             CampoHarmonico campo = CriarCampoHarmonicoPelaFormula(acorde, ObterFormulaPorAcordeBase(acorde));
-           
+
             return campo;
         }
 
         public CampoHarmonico CriarCampoHarmonico(Acorde acorde)
         {
             CampoHarmonico campo = CriarCampoHarmonicoPelaFormula(acorde, ObterFormulaPorAcordeBase(acorde));
-
             return campo;
         }
 
-        private CampoHarmonico CriarCampoHarmonicoPelaFormula(Acorde acorde, Tuple<int, TipoAcordeFormula>[] formula)
+        private CampoHarmonico CriarCampoHarmonicoPelaFormula(Acorde acorde, (TipoDistanciaEntreInvervalos, TipoAcordeFormula)[] formula)
         {
             CampoHarmonico campoHarmonico = new CampoHarmonico();
             FactoryAcorde factory = new FactoryAcorde();
@@ -88,7 +81,6 @@ namespace Acordes.Factory
                 tonicaBase = tonicaBase.Add(item.Item1);
                 campoHarmonico.
                     Graus.Add(factory.CriarAcorde(tonicaBase, item.Item2));
-
             }
 
             return campoHarmonico;

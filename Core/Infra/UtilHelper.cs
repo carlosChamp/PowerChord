@@ -15,9 +15,19 @@ namespace Acordes.Infra
         }
 
 
-        public static TipoNota Add(this TipoNota nota, int meioTom)
+        public static TipoNota Add(this TipoNota nota, TipoDistanciaEntreInvervalos meioTom)
         {
-            return (TipoNota)(((int)nota + meioTom) % 12);
+            return nota.Add((int)meioTom);
+        }
+
+        public static TipoNota Add(this TipoNota nota, TipoIntervalo intervalo)
+        {
+            return nota.Add((int)intervalo);
+        }
+
+        public static TipoNota Add(this TipoNota nota, int intervaloEmMeioTom)
+        {
+            return (TipoNota)(((int)nota + intervaloEmMeioTom) % 12);
         }
     }
 }

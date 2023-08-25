@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Acordes.Infra;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,7 +7,7 @@ namespace Acordes.Interpreter
 {
 
     [System.Serializable]
-    public class ExpressaoInvalidaException : Exception
+    public class ExpressaoInvalidaException : AcordeCoreException
     {
         public ExpressaoInvalidaException() { }
         public ExpressaoInvalidaException(string message) : base(message) { }

@@ -7,6 +7,6 @@ namespace Acordes
 
     public class CampoHarmonico
     {
-        public List<Acorde> Graus { get; set; } = new List<Acorde>();
+        public IList<Acorde> Graus { get; set; } = new List<Acorde>();
     }
 }

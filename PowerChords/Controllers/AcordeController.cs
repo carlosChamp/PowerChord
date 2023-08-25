@@ -25,7 +25,6 @@ namespace PowerChords.Controllers
         [HttpGet("{nome}")]
         public OutAcorde Get(string nome)
         {
-
             nome = HttpUtility.UrlDecode(nome);
             OutAcorde outAcorde = new OutAcorde();
             Acordes.DML.Acorde acorde = new Acordes.DML.Acorde(nome);

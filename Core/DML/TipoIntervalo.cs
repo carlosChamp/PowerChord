@@ -22,4 +22,10 @@
 
     }
 
+    public enum TipoDistanciaEntreInvervalos
+    {
+        MeioTom = 1,
+        Tom = 2
+    }
+
 }
